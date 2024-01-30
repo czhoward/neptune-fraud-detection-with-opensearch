@@ -130,7 +130,7 @@ resource "aws_cloudwatch_event_rule" "neptune_stream_poller_eventbridge_rule" {
   name                = join("-", [var.application_name, "PollerRule"])
   description         = "Executes the Neptune Poller Step Function Periodically"
   schedule_expression = "rate(5 minutes)"
-  is_enabled          = true
+  state               = "ENABLED"
 }
 
 resource "aws_cloudwatch_event_target" "neptune_stream_poller_eventbridge_target" {
