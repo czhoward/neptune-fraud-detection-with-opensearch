@@ -89,13 +89,13 @@ After the solution is deployed and the dataset is uploaded to S3, the dataset ca
 1. Confirm the Lambda function that sends a request to OpenSearch was deployed correctly:
 
 ```bash
-aws lambda get-function --function-name NeptuneStreamOpenSearchRequestLambda --query 'Configuration.[FunctionName, State]'
+aws lambda get-function --function-name NeptuneStreamOpenSearchRequestLambda --query 'Configuration.[FunctionName, State]' --region eu-west-2
 ```
 
 2. Invoke the Lambda function to see all records present in OpenSearch that are added from Neptune:
 
 ```bash
-aws lambda invoke --function-name NeptuneStreamOpenSearchRequestLambda response.json
+aws lambda invoke --function-name NeptuneStreamOpenSearchRequestLambda response.json --region eu-west-2
 ```
 
 The results of the Lambda invocation are stored in the `response.json` file. This file contains the total number of records in the cluster and all records ingested up to that point. The solution stores records in the index `amazon_neptune`. An example of a node with device information looks like this:
